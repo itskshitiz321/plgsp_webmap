@@ -48,7 +48,117 @@ $( document ).ready(function() {
     console.log( "ready!" );
 });
 ```
-Setup Map with map variable
+# Setup Map with map variable
 ```
 var mymap = L.map("mapid").setView([28.2096, 83.9856], 12);
 ```
+Setup Google Satellite Layer for leaflet 
+```
+  var googleSat = L.tileLayer(
+    "http://{s}.google.com/vt/lyrs=s&x={x}&y={y}&z={z}",
+    {
+      maxZoom: 20,
+      subdomains: ["mt0", "mt1", "mt2", "mt3"],
+    }
+  );
+
+```
+Setup Openstreetmap Layer for leaflet 
+```
+  var osm = L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+    maxZoom: 19,
+    attribution:
+      '&copy; <a href="https://openstreetmap.org/copyright">OpenStreetMap contributors</a>',
+  });
+
+```
+Setup Google Map Layer for leaflet 
+```
+  googleStreets = L.tileLayer(
+    "http://{s}.google.com/vt/lyrs=m&x={x}&y={y}&z={z}",
+    {
+      maxZoom: 20,
+      subdomains: ["mt0", "mt1", "mt2", "mt3"],
+    }
+  ).addTo(mymap);
+
+```
+
+We need to create list of basemap to add it on leaflet control 
+
+```
+  var baseMaps = {
+    "Google Map": googleStreets,
+    "Open Street Map": osm,
+    "Satellite": googleSat,
+  };
+
+```
+# Leaflet Control 
+Leaflet has a nice little control that allows your users to control which layers they see on your map. We will assign it in variable called layerswitcher so that we could add inside it later.
+Note : {collapsed:false } will set leaflet layer control open
+```
+layerswitcher = L.control
+    .layers(baseMaps, {}, { collapsed: false })
+    .addTo(mymap);
+
+```
+What if we want to add northarrow ? Not only northarrow we can add other pictures over leafletmap using this methodology
+```
+var northarrow = L.control({ position: "topright" });
+```
+You can add image inside control, This function will run after northarrow will be added to map . .onAdd() function will run after layer is added.
+```
+  northarrow.onAdd = function () {
+    var img = L.DomUtil.create("img");
+    img.src = "img/northarrow.png";
+    img.style.width = "100px";
+    img.style.height = "100px";
+
+    return img;
+  };
+  // now add northarrow to map
+  northarrow.addTo(mymap);
+```
+# Leaflet custom Marker Setup 
+```
+  var myIcon = L.icon({
+    iconUrl:  '***marker directory *****' ,
+    iconSize: [20, 20]
+  });
+```
+You can add marker with custom marker with this leaflet code 
+ ```
+L.marker(latlng, {icon: myIcon});
+```
+# jQuery getJSON() Method
+The getJSON() method is used to get JSON data using an AJAX HTTP GET request.
+```
+  $.getJSON("geojson/roadmodi.geojson", function (data) {
+    console.log(data);
+
+  });
+```
+#  L.geoJson 
+It Represents a GeoJSON object or an array of GeoJSON objects. Allows you to parse GeoJSON data and display it on the map. Extends FeatureGroup.
+```
+L.geoJson(data, {
+	style: function (feature) {
+		return {color: feature.properties.color};
+	},
+	onEachFeature: function (feature, layer) {
+		layer.bindPopup(feature.properties.description);
+	}
+}).addTo(map);
+```
+## Options
+### pointToLayer( <GeoJSON> featureData, <LatLng> latlng )
+Function that will be used for creating layers for GeoJSON points (if not specified, simple markers will be created).
+
+### style( <GeoJSON> featureData )
+Function that will be used to get style options for vector layers created for GeoJSON features.
+
+### onEachFeature( <GeoJSON> featureData, <ILayer> layer )
+Function that will be called on each created feature layer. Useful for attaching events and popups to features.
+
+# Happy Learning ! <3
