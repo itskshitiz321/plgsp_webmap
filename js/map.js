@@ -86,7 +86,7 @@ $(document).ready(function () {
         fillOpacity: 0,
         color: "	#FF0000",
         opacity: 1,
-        weight: 1,
+        weight: 1.5,
       },
       onEachFeature: function (feature, layer) {
       
