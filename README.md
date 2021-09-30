@@ -161,4 +161,50 @@ Function that will be used to get style options for vector layers created for Ge
 ### onEachFeature( <GeoJSON> featureData, <ILayer> layer )
 Function that will be called on each created feature layer. Useful for attaching events and popups to features.
 
+#### For Loop inside on EachFeature for finding attributes Key and value from geojson 
+Here table is class of [bootstrap](https://getbootstrap.com/docs/4.0/content/tables/)
+
+```
+        var popupContent = '<table   class="table table-bordered">';
+
+        for (var p in feature.properties) {
+          popupContent +=
+            "<tr><td>" +
+            p +
+            ":" +
+            "</td><td>" +
+            feature.properties[p] +
+            "</td></tr>";
+        }
+        popupContent += "</table>";
+
+```
+feature.properties contains all attribute information information hence p represents key of json and feature.properties[p] represents value of that key 
+#### Binding Popup to layer
+```
+        layer.bindPopup(popupContent, {
+          maxHeight: 225,
+          width: 200,
+          closeButton: false,
+        });
+```
+## Mouse Events 
+```
+        layer.on("mouseover", function () {
+          layer.openPopup();
+        });
+        layer.on("mouseout", function () {
+          layer.closePopup();
+        });
+
+```
+## Mouse Event Lat Long Finder
+```
+  mymap.addEventListener('mousemove', function(ev) {
+    lat = ev.latlng.lat;
+    lng = ev.latlng.lng;
+    console.log(lat,lng);
+ });
+ ```
+
 ## Happy Learning ! <3
