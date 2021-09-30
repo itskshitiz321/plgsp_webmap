@@ -124,25 +124,31 @@ $(document).ready(function () {
 
   $.getJSON('geojson/modischools.geojson', function (data) {
     console.log(data);
+    
        pointfile=L.geoJson(data,{
         pointToLayer: function (feature, latlng) {
           return L.marker(latlng, {icon: myIcon});
       },
+      
            onEachFeature: function (feature, layer) {
             var popupContent = '<table   class="table table-bordered">';
+           
     
             for (var p in feature.properties) {
               popupContent +=
                 "<tr><td>" + p +":"+ "</td><td>" + feature.properties[p] + "</td></tr>";
     
-              popupContent += "</table>";
+              
     
-              layer.bindPopup(popupContent, { maxHeight: 225, width: 200,closeButton: false  });
+              
+            }
+            popupContent += "</table>";
+            layer.bindPopup(popupContent, { maxHeight: 225, width: 200,closeButton: false  });
     
               layer.on('mouseover', function() { layer.openPopup(); });
               layer.on('mouseout', function() { layer.closePopup(); });
-            }
-          }          
+          }
+                    
       }).addTo(mymap);
     layerswitcher.addOverlay(pointfile, "Schools");
 
