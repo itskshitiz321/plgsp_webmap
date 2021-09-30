@@ -1,0 +1,9 @@
+{
+"type": "FeatureCollection",
+"name": "googleearthpoints",
+"crs": { "type": "name", "properties": { "name": "urn:ogc:def:crs:OGC:1.3:CRS84" } },
+"features": [
+{ "type": "Feature", "properties": { "Name": "poiint1", "description": null, "timestamp": null, "begin": null, "end": null, "altitudeMode": null, "tessellate": -1, "extrude": 0, "visibility": -1, "drawOrder": null, "icon": null }, "geometry": { "type": "Point", "coordinates": [ 83.976091061809001, 28.17888365188681, 0.0 ] } },
+{ "type": "Feature", "properties": { "Name": "Point 2 ", "description": null, "timestamp": null, "begin": null, "end": null, "altitudeMode": null, "tessellate": -1, "extrude": 0, "visibility": -1, "drawOrder": null, "icon": null }, "geometry": { "type": "Point", "coordinates": [ 83.995980274627513, 28.218038536494181, 0.0 ] } }
+]
+}
