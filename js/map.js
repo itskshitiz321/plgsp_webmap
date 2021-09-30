@@ -53,7 +53,7 @@ $(document).ready(function () {
   northarrow.addTo(mymap);
 // defining custom marker
   var myIcon = L.icon({
-    iconUrl:  'img/marker.png' ,
+    iconUrl:  "img/marker.png" ,
     iconSize: [20, 20]
   });
 
