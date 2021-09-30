@@ -30,7 +30,7 @@ $(document).ready(function () {
   var baseMaps = {
     "Google Map": googleStreets,
     "Open Street Map": osm,
-    Satellite: googleSat,
+    "Satellite": googleSat,
   };
   // add leaflet layers control in map
   layerswitcher = L.control
@@ -53,7 +53,7 @@ $(document).ready(function () {
   northarrow.addTo(mymap);
 // defining custom marker
   var myIcon = L.icon({
-    iconUrl:  'http://168.119.174.18:7070/static/assets/marker.png' ,
+    iconUrl:  'img/marker.png' ,
     iconSize: [20, 20]
   });
 
