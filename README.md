@@ -161,4 +161,4 @@ Function that will be used to get style options for vector layers created for Ge
 ### onEachFeature( <GeoJSON> featureData, <ILayer> layer )
 Function that will be called on each created feature layer. Useful for attaching events and popups to features.
 
-# Happy Learning ! <3
+## Happy Learning ! <3
